@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import { TOGGLE_MODE_MAP } from '../utils/constants';
 
 export class Navbar extends Component {
   render() {
+    const { mode, toggleMode } = this.props || {};
     return (
       <div>
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <nav className={`navbar navbar-expand-lg navbar-${mode} bg-${mode}`}>
           <div className="container-fluid">
             <a className="navbar-brand" href="/">Navbar</a>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,6 +21,10 @@ export class Navbar extends Component {
                   <a className="nav-link" href="/about">About</a>
                 </li>
               </ul>
+            </div>
+            <div className={`form-check form-switch text-${TOGGLE_MODE_MAP[mode]}`}>
+              <input className="form-check-input" onClick={toggleMode} type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Enable Dark Mode</label>
             </div>
           </div>
         </nav>
