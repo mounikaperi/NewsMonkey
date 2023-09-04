@@ -28,7 +28,6 @@ export class News extends Component {
           <h2>NewsMonkey - Top Headlines</h2>
           <div className = "row">
           {this.state.articles.map((currentArticle) => {
-            console.log(`state articles`);
             const { url, title, description, urlToImage } = currentArticle || {};
             const { shortTitle, shortDescription } = trimTitleNDescription(title, description) || {};
             return <div className = "col-md-4" key = {url}>

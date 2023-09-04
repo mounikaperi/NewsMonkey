@@ -8,16 +8,16 @@ export class App extends Component {
     super();
     this.state = {
       mode: TOGGLE_MODES.LIGHT
-    }
-    document.body.style.backgroundColor = TOGGLE_MODE_BG_COLOR_MAP[this.state.mode];
-    document.body.style.color = TOGGLE_MODE_COLOR_MAP[this.state.mode];
+    };
   }
   toggleMode = () => {
     this.setState({
-      mode: TOGGLE_MODE_MAP[this.state.mode],
-    })
-    document.body.style.backgroundColor = TOGGLE_MODE_BG_COLOR_MAP[this.state.mode];
-    document.body.style.color = TOGGLE_MODE_COLOR_MAP[this.state.mode];
+      mode: TOGGLE_MODE_MAP[this.state.mode]
+    }, function() {
+      console.log(this.state.mode)
+      document.body.style.backgroundColor = TOGGLE_MODE_BG_COLOR_MAP[this.state.mode];
+      document.body.style.color = TOGGLE_MODE_COLOR_MAP[this.state.mode];
+    });
   }
   render() {
     return (
