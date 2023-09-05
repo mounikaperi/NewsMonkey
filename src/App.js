@@ -14,7 +14,6 @@ export class App extends Component {
     this.setState({
       mode: TOGGLE_MODE_MAP[this.state.mode]
     }, function() {
-      console.log(this.state.mode)
       document.body.style.backgroundColor = TOGGLE_MODE_BG_COLOR_MAP[this.state.mode];
       document.body.style.color = TOGGLE_MODE_COLOR_MAP[this.state.mode];
     });
