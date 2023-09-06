@@ -10,7 +10,7 @@ export class NewsItem extends Component {
             <img src={imageUrl} className="img-fluid img-thumbnail" style={{ width: "100%", height: "15vw", objectFit: "cover" }} alt={title} />
             <div className="card-body">
               <h5 className="card-title" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: 'ellipsis'}}>{title}</h5>
-              <p className="card-text" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: 'ellipsis'}}>{description ? description : title}</p>
+              <p className="card-text" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: 'ellipsis'}}>{description || title}</p>
               <a href={newsUrl} target="_blank" className="btn btn-primary" rel="noreferrer">Read More...</a>
             </div>
           </div>

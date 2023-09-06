@@ -27,39 +27,42 @@ export class News extends Component {
 
   async componentDidMount() {
     const queryParams = {
-      page: this.state.page
+      page: this.state.page,
+      pageSize: this.props.pageSize
     }
     await this.fetchArticlesNSetState(queryParams);
   }
 
   handlePreviousClick = async () => {
     const queryParams = {
-      page: this.state.page - 1
+      page: this.state.page - 1,
+      pageSize: this.props.pageSize
     }
     await this.fetchArticlesNSetState(queryParams);
   }
 
   handleNextClick = async () => {
     const queryParams = {
-      page: this.state.page + 1
+      page: this.state.page + 1,
+      pageSize: this.props.pageSize
     }
     await this.fetchArticlesNSetState(queryParams);
   }
 
   disablePreviousPage = () => {
-    return (this.state.page <= 1) ? true : false;  
+    return (this.state.page <= 1);  
   }
 
   disableNextPage = () => {
     const totalNumberOfPages = Math.ceil(this.state.totalArticlesCount/15);
-    return this.state.page < totalNumberOfPages - 1 ? false : true;
+    return this.state.page >= totalNumberOfPages - 1;
   }
 
   render() {
     return (
       <div>
         <div className="container my-3">
-          <h2>NewsMonkey - Top Headlines</h2>
+          <h1 className="text-center">NewsMonkey - Top Headlines</h1>
           <div className="row">
             {this.state.articles.map((currentArticle) => {
               const { url, title, description, urlToImage } = currentArticle || {};

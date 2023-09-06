@@ -1,8 +1,8 @@
 import { APIKEY } from "../utils/constants";
 
 const fetchNews = async (queryStringParams) => {
-  const { page: pageNumber } = queryStringParams || {};
-  const newsUrl = `https://newsapi.org/v2/top-headlines?country=in&apiKey=${APIKEY}&page=${pageNumber}`;
+  const { page: pageNumber, pageSize} = queryStringParams || {};
+  const newsUrl = `https://newsapi.org/v2/top-headlines?country=in&apiKey=${APIKEY}&page=${pageNumber}&pageSize=${pageSize}`;
   try {
     const fetchedNews = await fetch(newsUrl);
     const parsedFetchedNews = await fetchedNews.json();
