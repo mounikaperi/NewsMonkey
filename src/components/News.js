@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem'
+import Spinner from './Spinner'
 import fetchNews from '../services/newsService';
 import { setDefaultImage } from '../utils/commonUtils';
 
@@ -21,7 +22,8 @@ export class News extends Component {
       status: fetchedArticles.status,
       articles: fetchedArticles.articles,
       totalArticlesCount: fetchedArticles.totalResults,
-      page: queryParams.page
+      page: queryParams.page,
+      loading: false
     })
   }
 
@@ -30,6 +32,7 @@ export class News extends Component {
       page: this.state.page,
       pageSize: this.props.pageSize
     }
+    this.setState({loading: true});
     await this.fetchArticlesNSetState(queryParams);
   }
 
@@ -38,6 +41,7 @@ export class News extends Component {
       page: this.state.page - 1,
       pageSize: this.props.pageSize
     }
+    this.setState({loading: true});
     await this.fetchArticlesNSetState(queryParams);
   }
 
@@ -46,6 +50,7 @@ export class News extends Component {
       page: this.state.page + 1,
       pageSize: this.props.pageSize
     }
+    this.setState({loading: true});
     await this.fetchArticlesNSetState(queryParams);
   }
 
@@ -63,8 +68,9 @@ export class News extends Component {
       <div>
         <div className="container my-3">
           <h1 className="text-center">NewsMonkey - Top Headlines</h1>
+          {this.state.loading && <Spinner />}
           <div className="row">
-            {this.state.articles.map((currentArticle) => {
+            {!this.state.loading && this.state.articles.map((currentArticle) => {
               const { url, title, description, urlToImage } = currentArticle || {};
               return <div className="col-md-4" key={url}>
                 <NewsItem title={title} description={description} urlToImage={setDefaultImage(urlToImage)} url={url} />
