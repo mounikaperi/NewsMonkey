@@ -1,10 +1,21 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import NewsItem from './NewsItem'
 import Spinner from './Spinner'
-import fetchNews from '../services/newsService';
+import fetchTopHeadlines from '../services/newsService';
 import { setDefaultImage } from '../utils/commonUtils';
 
 export class News extends Component {
+  static defaultProps = {
+    country: "in",
+    pageSize: 8,
+    category: "general"
+  }
+  static propTypes = {
+    country: PropTypes.string,
+    pageSize: PropTypes.number,
+    category: PropTypes.string
+  }
   constructor() {
     super();
     this.state = {
@@ -17,7 +28,7 @@ export class News extends Component {
   }
 
   fetchArticlesNSetState = async (queryParams) => {
-    const fetchedArticles = await fetchNews(queryParams);
+    const fetchedArticles = await fetchTopHeadlines(queryParams);
     this.setState({
       status: fetchedArticles.status,
       articles: fetchedArticles.articles,
@@ -30,6 +41,8 @@ export class News extends Component {
   async componentDidMount() {
     const queryParams = {
       page: this.state.page,
+      country: this.props.country,
+      category: this.props.category,
       pageSize: this.props.pageSize
     }
     this.setState({loading: true});
@@ -39,6 +52,8 @@ export class News extends Component {
   handlePreviousClick = async () => {
     const queryParams = {
       page: this.state.page - 1,
+      country: this.props.country,
+      category: this.props.category,
       pageSize: this.props.pageSize
     }
     this.setState({loading: true});
@@ -48,6 +63,8 @@ export class News extends Component {
   handleNextClick = async () => {
     const queryParams = {
       page: this.state.page + 1,
+      country: this.props.country,
+      category: this.props.category,
       pageSize: this.props.pageSize
     }
     this.setState({loading: true});
@@ -67,7 +84,7 @@ export class News extends Component {
     return (
       <div>
         <div className="container my-3">
-          <h1 className="text-center">NewsMonkey - Top Headlines</h1>
+          <h1 className="text-center" style={{margin: "40px 0px"}}>NewsMonkey - Top Headlines</h1>
           {this.state.loading && <Spinner />}
           <div className="row">
             {!this.state.loading && this.state.articles.map((currentArticle) => {

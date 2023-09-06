@@ -22,7 +22,7 @@ export class App extends Component {
     return (
       <div>
         <Navbar mode={this.state.mode} toggleMode={this.toggleMode} />
-        <News pageSize={15}/>
+        <News pageSize={15} country={"in"} category={"science"}/>
       </div>
     )
   }

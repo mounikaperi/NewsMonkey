@@ -18,7 +18,25 @@ export class Navbar extends Component {
                   <a className="nav-link active" style={{ color: `${TOGGLE_MODE_COLOR_MAP[mode]}` }} aria-current="page" href="/">Home</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" style={{ color: `${TOGGLE_MODE_COLOR_MAP[mode]}` }} href="/about">About</a>
+                  <a className="nav-link" style={{ color: `${TOGGLE_MODE_COLOR_MAP[mode]}` }} href="/about">Business</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" style={{ color: `${TOGGLE_MODE_COLOR_MAP[mode]}` }} href="/about">Entertainment</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" style={{ color: `${TOGGLE_MODE_COLOR_MAP[mode]}` }} href="/about">General</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" style={{ color: `${TOGGLE_MODE_COLOR_MAP[mode]}` }} href="/about">Health</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" style={{ color: `${TOGGLE_MODE_COLOR_MAP[mode]}` }} href="/about">Science</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" style={{ color: `${TOGGLE_MODE_COLOR_MAP[mode]}` }} href="/about">Sports</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" style={{ color: `${TOGGLE_MODE_COLOR_MAP[mode]}` }} href="/about">Technology</a>
                 </li>
               </ul>
             </div>
