@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import NewsItem from './NewsItem'
 import Spinner from './Spinner'
 import fetchTopHeadlines from '../services/newsService';
-import { setDefaultImage } from '../utils/commonUtils';
+import { capitalizeFirstLetter, setDefaultImage } from '../utils/commonUtils';
+import { TOGGLE_MODE_MAP } from '../utils/constants';
 
 export class News extends Component {
   static defaultProps = {
@@ -28,6 +29,7 @@ export class News extends Component {
   }
 
   fetchArticlesNSetState = async (queryParams) => {
+    console.log(queryParams)
     const fetchedArticles = await fetchTopHeadlines(queryParams);
     this.setState({
       status: fetchedArticles.status,
@@ -84,20 +86,20 @@ export class News extends Component {
     return (
       <div>
         <div className="container my-3">
-          <h1 className="text-center" style={{margin: "40px 0px"}}>NewsMonkey - Top Headlines</h1>
+          <h1 className="text-center" style={{margin: "40px 0px"}}>NewsMonkey - {capitalizeFirstLetter(this.props.category)} Top Headlines</h1>
           {this.state.loading && <Spinner />}
           <div className="row">
             {!this.state.loading && this.state.articles.map((currentArticle) => {
-              const { url, title, description, urlToImage } = currentArticle || {};
+              const { url, title, description, urlToImage, publishedAt } = currentArticle || {};
               return <div className="col-md-4" key={url}>
-                <NewsItem title={title} description={description} urlToImage={setDefaultImage(urlToImage)} url={url} />
+                <NewsItem title={title} description={description} urlToImage={setDefaultImage(urlToImage)} url={url} publishedAt={publishedAt}/>
               </div>
             })}
           </div>
         </div>
         <div className="container d-flex justify-content-between">
-          <button type="button" className="btn btn-dark" disabled={this.disablePreviousPage()} onClick={this.handlePreviousClick}>&larr; Previous</button>
-          <button type="button" className="btn btn-dark" disabled={this.disableNextPage()} onClick={this.handleNextClick}>Next &rarr;</button>
+          <button type="button" className={`btn btn-${TOGGLE_MODE_MAP[this.props.mode]}`} disabled={this.disablePreviousPage()} onClick={this.handlePreviousClick}>&larr; Previous</button>
+          <button type="button" className={`btn btn-${TOGGLE_MODE_MAP[this.props.mode]}`} disabled={this.disableNextPage()} onClick={this.handleNextClick}>Next &rarr;</button>
         </div>
       </div>
     )
