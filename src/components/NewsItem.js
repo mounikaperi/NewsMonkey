@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import App from '../App.css'
+import '../App.css'
 
 export class NewsItem extends Component {
   render() {
@@ -10,7 +10,7 @@ export class NewsItem extends Component {
         <div className="col w-100">
           <div className="card mr-8 mb-4 pb-4">
           <div style={{display: 'flex', justifyContent: 'flex-end', position: 'absolute',right: '0'}}><span className="badge rounded-pill bg-danger">{sourceName}</span></div>
-            <img src={imageUrl} className="img-fluid rounded" style={{maxWidth: "100%", minHeight: "310px", objectFit: "cover" }} alt={title} />
+            <img src={imageUrl} className="img-fluid rounded" style={{maxWidth: "100%", minHeight: "250px", objectFit: "cover" }} alt={title} />
             <div className="card-body">
               <h5 className="card-title" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: 'ellipsis'}}>{title}
                 <span class="position absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{sourceName}</span>
