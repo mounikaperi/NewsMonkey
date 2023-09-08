@@ -9,7 +9,7 @@ import News from './components/News'
 import { TOGGLE_MODES, TOGGLE_MODE_BG_COLOR_MAP, TOGGLE_MODE_COLOR_MAP, TOGGLE_MODE_MAP } from './utils/constants';
 
 export class App extends Component {
-  pageSize = 5;
+  pageSize = 20;
   constructor() {
     super();
     this.state = {

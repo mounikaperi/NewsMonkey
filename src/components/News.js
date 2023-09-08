@@ -29,7 +29,6 @@ export class News extends Component {
   }
 
   fetchArticlesNSetState = async (queryParams) => {
-    console.log(queryParams)
     const fetchedArticles = await fetchTopHeadlines(queryParams);
     this.setState({
       status: fetchedArticles.status,
@@ -85,14 +84,14 @@ export class News extends Component {
   render() {
     return (
       <div>
-        <div className="container my-3">
+        <div className="container container-md">
           <h1 className="text-center" style={{margin: "40px 0px"}}>NewsMonkey - {capitalizeFirstLetter(this.props.category)} Top Headlines</h1>
           {this.state.loading && <Spinner />}
           <div className="row">
             {!this.state.loading && this.state.articles.map((currentArticle) => {
-              const { url, title, description, urlToImage, publishedAt } = currentArticle || {};
+              const { url, title, description, urlToImage, publishedAt, author, source } = currentArticle || {};
               return <div className="col-md-4" key={url}>
-                <NewsItem title={title} description={description} urlToImage={setDefaultImage(urlToImage)} url={url} publishedAt={publishedAt}/>
+                <NewsItem title={title} description={description} urlToImage={setDefaultImage(urlToImage)} url={url} publishedAt={publishedAt} author={author} source={source}/>
               </div>
             })}
           </div>
