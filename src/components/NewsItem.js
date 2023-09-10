@@ -16,7 +16,7 @@ export class NewsItem extends Component {
                 <span class="position absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{sourceName}</span>
               </h5>
               <p className="card-text truncate-overflow">{description || title}</p>
-              <a href={newsUrl} target="_blank" className="btn btn-secondary" rel="noreferrer">Read More...</a>
+              <a href={newsUrl} target="_blank" className="btn btn-primary" rel="noreferrer">Read More...</a>
             </div>
             <div class="card-footer h-50" style={{borderTop: "0px"}}>
               <small class="text-muted text-center">Published on: {new Date(publishedAt).toGMTString()}</small><br />

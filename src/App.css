@@ -3,7 +3,7 @@
   position: relative;
   max-height: 3rem;
   overflow: hidden;
-  textOverflow: 'ellipsis';
+  text-overflow: 'ellipsis';
   padding-right: 1rem; /* space for ellipsis */
 }
 .truncate-overflow::before {
